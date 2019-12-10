@@ -2,90 +2,28 @@
 
 int main()
 {
-    string name;
+    string menu;
     InitiativeTracker it;
 
     it.Begin();
-    // TESTING FOR ENTIRE PROGRAM
-
     /*
+    menu = it.LoadMainMenu();
 
-    // Test adding party from file
-    it.AddPartyFromFile();
+    it.PrintMenu(menu);
 
-    // Add list to string
-    string list = it.CreateInitiativeList();
+    cout << endl << endl << endl;
 
-    // Print string to test
-    cout << list;
+    menu = it.LoadEncounterCreationMenu();
 
-    //NOTE: READ IN FILE LOOP ITERATES ONE TOO MANY TIMES. SOMETHING ABOUT
-    //      'END OF FILE' NOT SET UNTIL FIRST READ?
+    it.PrintMenu(menu);
 
+    cout << endl << endl << endl;
 
-    // Add actors from sample
-    for(int index = 0; index < 4; index++)
-    {
-        it.AddActors();
-    }
+    menu = it.LoadAddToCombatPrompt();
 
-    // Print to test
-    list = it.CreateInitiativeList();
+    it.PrintMenu(menu);
 
-    cout << list;
-
-    it.PrepareCombat();
-
-        // THIS IS THE ENTIRE STARTCOMBAT MODULE. INCOMPLETE, THOUGH.
-
-        // IT NEEDS TO BE ORGANIZED THO
-
-    // Call StartCombat
-
-    string numberedList;
-    char battleOption;
-    int deadIndex;
-    bool inBattle = true;
-    enum BattleOptions{CONTINUE = 'c', KILL = 'k', QUIT = 'q'};
-
-    while(inBattle)
-    {
-        // Print menu and prompt
-        cout << "Continue (c), Kill (k), Quit (q): " << endl;
-        cin.get(battleOption);
-        cin.ignore(999,'\n');
-
-        switch (battleOption)
-        {
-            case CONTINUE:  it.GetNextActor();
-                            list = it.CreateInitiativeList();
-                            system("cls");
-                            cout << list;
-                        break;
-            case KILL:      numberedList = it.CreateNumberedList();
-                            system("cls");
-                            cout << numberedList;
-            // validate num input for range of people
-            // REMEMBER THIS WILL BE IN A METHOD SO YOU CAN USE
-            // COMBATLIST.SIZE() AS THE MAX
-                            cout << "Kill who? (1-" << ") ";
-                            cin >> deadIndex;
-                            cin.ignore(999,'\n');
-                            it.KillActor(deadIndex - 1);
-                            system("cls");
-                            list = it.CreateInitiativeList();
-                            cout << list;
-                        break;
-            case QUIT:      inBattle = false;
-                        break;
-        }
-    }// END while(inBattle)
-
-    // END StartCombat
-
+    cout << endl << endl << endl;
 */
-
-
-
     return 0;
 }

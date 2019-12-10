@@ -19,7 +19,7 @@ class InitiativeTracker
 private:
     DynamicList<Actor> combatList;
     string initiativeList;
-    const int MENU_LINE_SIZE = 48;
+    const int MENU_LINE_SIZE = 35;
 
 public:
     //Methods
@@ -36,65 +36,61 @@ public:
     // Put menu body into menu template and print
     void PrintMenu(const string menuBody)
     {
-        /**********************************************
-         *                                            *
-         *                menuOptions                 *
-         *                                            *
-         **********************************************
+        /*
+                    ,     \    /      ,
+                   / \    )\__/(     / \
+                  /   \  (_\  /_)   /   \
+             ____/_____\__\@  @/___/_____\____
+            |             |\../|              |
+            |              \VV/               |
+                        menuBody
+            |_________________________________|
+             |    /\ /      \\       \ /\    |
+             |  /   V        ))       V   \  |
+             |/     `       //        '     \|
+ `                          V                '
         */
 
         // Store header
-        cout   << setfill('*') << "*" << setw(MENU_LINE_SIZE +1) << "*" << endl
-               << setfill(' ') << "*" << setw(MENU_LINE_SIZE +1) << "*" << endl
-               << setfill(' ')
-        // Store imported menu options
-               << menuBody << endl
-        // Store footer
-               << setfill(' ') << "*" << setw(MENU_LINE_SIZE +1) << "*" << endl
-               << setfill('*') << "*" << setw(MENU_LINE_SIZE +1) << "*"
-               << endl << endl;
+        cout << "        ,    |\\    /|     ,"         << endl
+             << "       / \\    )\\__/(     / \\ "       << endl
+             << "      /   \\  (_\\  /_)   /   \\ "      << endl
+             << " ____/_____\\__\\@  @/___/_____\\ ___"  << endl
+             << "|             |\\../|              |" << endl
+             << "|              \\VV/               |" << endl
+             <<            menuBody << endl
+             << "|_________________________________|" << endl
+             << "  |    /\\ /      \\\\       \\ /\\   |" << endl
+             << "  |  /   V        ))       V   \\ |" << endl
+             << "  |/     `       //        '    \\|" << endl
+             << "  `              V               '" << endl;
+
     }
 
     // Load main menu body into string to be output by PrintMenu
     string LoadMainMenu()
     {
 
-        /*                Welcome to                  *
-         *        Verly's Initiative Tracker!         *
-         *                                            *
-         *        <C> Create Combat Encounter         *
-         *        <G> Fight!                          *
-         *        <P> Clear Combat                    *
-         *        <Q> Quit                            *
+       /* |           Welcome to            |
+          |   Verly's Initiative Tracker    |
+          |                                 |
+          |    C. Create Combat Encounter   |
+          |    G. Fight!                    |
+          |    P. Reset Combat              |
+          |    Q. Quit                      |
 
          */
 
         ostringstream stream;
         string menuPrompt;
-        const int LEFT_COL = 6;
 
-        // Welcome to Verly's Initiative Tracker!
-        stream << '*' << CenterString("Welcome to", MENU_LINE_SIZE) << '*' << endl
-               << '*' << CenterString("Verly's Initiative Tracker!", MENU_LINE_SIZE)
-               << '*' << endl
-               << setfill(' ') << '*' << setw(MENU_LINE_SIZE +1) << '*' << endl
-        // Create Combat Encounter
-               << left << setw(LEFT_COL) << '*'
-               << setw(MENU_LINE_SIZE - LEFT_COL + 1)
-               << "<C> Create Combat Encounter" << '*' << endl
-        // Fight!
-               << left << setw(LEFT_COL) << '*'
-               << setw(MENU_LINE_SIZE - LEFT_COL + 1)
-               << "<G> Fight!" << '*' << endl
-        // Clear Combat
-               << left << setw(LEFT_COL) << '*'
-               << setw(MENU_LINE_SIZE - LEFT_COL + 1)
-               << "<P> Reset Combat" << '*' << endl
-        // Quit
-               << setw(LEFT_COL) << '*'
-               << setw(MENU_LINE_SIZE - LEFT_COL + 1)
-               << "<Q> Quit" << '*'
-               << right;
+        stream << '|' << setw(21) << "Welcome to" << "            |" << endl
+               << '|' << setw(30) << "Verly's Initiative Tracker!" << "   |" << endl
+               << "|" << setfill(' ') << setw(MENU_LINE_SIZE - 1) << '|' << endl
+               << "|   <C> Create Combat Encounter   |" << endl
+               << "|   <G> Fight!                    |" << endl
+               << "|   <P> Reset Combat              |" << endl
+               << "|   <Q> Quit                      |";
         menuPrompt = stream.str();
         return menuPrompt;
     }
@@ -103,51 +99,141 @@ public:
     string LoadEncounterCreationMenu()
     {
 
-        /*          Create Combat Encounter           *
-         *                                            *
-         *        <C> Add Party to Combat             *
-         *        <A> Add Ally/Enemy to Combat        *
-         *        <Q> Back to Main Menu               *
+        /*|     Create Combat Encounter     |
+          |                                 |
+          |    A. Add Party to Combat       |
+          |    B. Add Ally/Enemy to Combat  |
+          |    Q. Back                      |
 
          */
 
         ostringstream stream;
         string menuOptions;
-        const int LEFT_COL = 6;
 
-        // Welcome to Verly's Initiative Tracker!
-        stream << '*' << CenterString("Create Combat Menu", MENU_LINE_SIZE)
-               << '*' << endl
-               << setfill(' ') << '*' << setw(MENU_LINE_SIZE +1) << '*' << endl
-        // Add Party to Combat
-               << left << setw(LEFT_COL) << '*'
-               << setw(MENU_LINE_SIZE - LEFT_COL + 1)
-               << "<C> Add Party to Combat" << '*' << endl
-        // Add Ally/Enemy to Combat
-               << left << setw(LEFT_COL) << '*'
-               << setw(MENU_LINE_SIZE - LEFT_COL + 1)
-               << "<A> Add Ally/Enemy to Combat" << '*' << endl
-        // Quit
-               << setw(LEFT_COL) << '*'
-               << setw(MENU_LINE_SIZE - LEFT_COL + 1)
-               << "<Q> Back to Main Menu" << '*'
-               << right;
+        stream << '|' << setw(25) << "Create Combat Menu" << "        |" << endl
+               << '|' << setfill(' ') << setw(MENU_LINE_SIZE - 1) << '|' << endl
+               << "|   <C> Add Party to Combat       |" << endl
+               << "|   <A> Add Ally/Enemy to Combat  |" << endl
+               << "|   <Q> Back to Main Menu         |";
+
         menuOptions = stream.str();
         return menuOptions;
+    }
+
+    string LoadAddToCombatPrompt()
+    {
+        //  |   Enter Name:                   |
+
+        const int LEFT_COL = 4;
+        ostringstream stream;
+        string prompt;
+
+        // Quit
+        stream << left
+               << setw(LEFT_COL) << '|'
+               << setw(MENU_LINE_SIZE - LEFT_COL -1)
+               << "Enter Name: " << '|'
+               << right;
+
+        prompt = stream.str();
+        return prompt;
     }
 
     // Output template used for conducting combat
     void PrintScroll(const string &menuBody)
     {
-        cout << menuBody;
+       /*
+        __________________________________
+       /  \                               \.
+       |   |                               |.
+       |   |   Name                  Init. |.
+        \_ | _______________________|______|.
+                     cout << menuBody;
+        |   ____________________________|___
+        |  /                               /.
+        \_/_______________________________/.
 
+        */
 
+        cout << " __________________________________" << endl
+             << " /  \\                               \\." << endl
+             << " |   |                               |." << endl
+             << " |   |   Name                  Init. |." << endl
+             << "  \\_ |                               |." << endl
+                            << menuBody
+             << "     |   ____________________________|___" << endl
+             << "     |  /                               /." << endl
+             << "     \\_/_______________________________/." << endl << endl;
 
+    }
 
-        string tempName;
+    // Create un-numbered list to insert into battlescreen
+    string CreateInitiativeList()
+    {
+        /*
+         |   Skeleton Warrior 10  | 15   |.
+         |   --------------------------- |.
+         |   Jahan                | 12   |.
+         |   --------------------------- |.
+         |   Vampire              | 10   |.
+         |   --------------------------- |.
+         */
+        const int NAME_COL = 20;
+        const int DASH_FILLER = 30;
+        ostringstream stream;
 
-        tempName = UppercaseString(combatList[0].GetName());
-        cout << tempName << "'S TURN!" << endl;
+        for(int index = 0; index < combatList.Size(); index++)
+        {
+            // Name
+            stream << left;
+            stream << "     |   " << setw(NAME_COL) << setfill(' ') << combatList[index].GetName();
+            stream << "  | ";
+            // Init
+            stream << right;
+            stream << setw(3) << combatList[index].GetInitiative() << " |."
+                   << endl;
+            // Dashes
+            stream << "     |   "  << setw(DASH_FILLER)<< setfill('-')
+                   << " |." << endl;
+
+        }
+
+        return stream.str();
+    }
+
+    // Create numbered list of active combatants for user to choose who to 'kill'
+    string CreateNumberedList()
+    {
+
+        /*
+         | 1 Skeleton Warrior 10  | 15   |.
+         |   --------------------------- |.
+         | 2 Jahan                | 12   |.
+         |   --------------------------- |.
+         | 3 Vampire              | 10   |.
+         |   --------------------------- |.
+         */
+
+        const int NAME_COL = 20;
+        const int DASH_FILLER = 30;
+        ostringstream stream;
+
+        for(int index = 0; index < combatList.Size(); index++)
+        {
+            // Name
+            stream << left;
+            stream << "     | " << index +1 << " " << setw(NAME_COL) << setfill(' ') << combatList[index].GetName();
+            stream << "  | ";
+            // Init
+            stream << right;
+            stream << setw(3) << combatList[index].GetInitiative() << " |."
+                   << endl;
+            // Dashes
+            stream << "     |   "  << setw(DASH_FILLER)<< setfill('-')
+                   << " |." << endl;
+
+        }
+        return stream.str();
     }
 
     /*upperCase() *************************************
@@ -170,54 +256,6 @@ public:
         }
 
         return input;
-    }
-
-    /**************************************************************************
-     * FUNCTION CenterString
-     * ------------------------------------------------------------------------
-     * Purpose : This function will center text a line of text
-     * ------------------------------------------------------------------------
-     * RECEIVES
-     * Text and the size of the line
-     *
-     * RETURNS
-     * stream : string
-     **************************************************************************/
-    string CenterString(string text, const int LINE_SIZE)
-    {
-        ostringstream stream;
-        int length = text.length();
-        int position = (int)((LINE_SIZE - length)/2);
-
-        if(text.length() % 2 == 0)
-        {
-            for(int index = 0; index < position; index++)
-            {
-                stream << " ";
-            }
-
-            stream << text;
-
-            for(int index = 0; index < position; index++)
-            {
-                stream << " ";
-            }
-        }
-        else
-        {
-            for(int index = 0; index < position; index++)
-            {
-                stream << " ";
-            }
-
-            stream << text << " ";
-
-            for(int index = 0; index < position; index++)
-            {
-                stream << " ";
-            }
-        }
-        return stream.str();
     }
 
         // --------------- Menu Input Methods --------------- //
@@ -327,7 +365,7 @@ public:
                                 }
                                 else
                                 {
-                                    cout << "Party already added from file.";
+                                    cout << "Party already added from file." << endl;
                                 }
                                 system("pause");
                         break;
@@ -464,19 +502,25 @@ public:
         int actorCount = 0;
         bool invalidInput = true;
         bool addingActors = true;
-        ostringstream stream;
-        string prompt;
+        ostringstream intInputStream;
+        ostringstream scrollStream;
+        string scrollPrompt;
+        string intInputprompt;
         Actor temp;
-
-
+        string list;
 
         while(addingActors)
         {
-            bool invalidInput = true;
+            invalidInput = true;
 
             while(invalidInput)
             {
                 system("cls");
+
+                // Assign un-numbered list
+                list = CreateInitiativeList();
+                // Print Scroll
+                PrintScroll(list);
                 // User enters actor type
                 cout << "Enter name of creature (input x to exit): ";
                 getline(cin, name);
@@ -500,16 +544,15 @@ public:
                 // User enters number of actors in group
                 while(invalidInput)
                 {
-                    system("cls");
                     // Store prompt
-                    stream << "Enter number of " << name << "s" << " to add: ";
-                    prompt = stream.str();
+                    intInputStream << "Enter number of " << name << "s" << " to add: ";
+                    intInputprompt = intInputStream.str();
                     // Get valid user input
-                    invalidInput = ValidateIntInput(0, 30, actorCount, prompt);
+                    invalidInput = ValidateIntInput(0, 30, actorCount, intInputprompt);
                     // Clear stream for next prompt
                     if(!invalidInput)
                     {
-                        stream.str("");
+                        intInputStream.str("");
                     }
                 }// END while(invalidInput)
 
@@ -538,28 +581,6 @@ public:
                 }
             }// END if(name != "X")
         }// END while(addingActors)
-    }
-
-    // Create un-numbered list to insert into battlescreen
-    string CreateInitiativeList()
-    {
-        const int LEFT_COL = 20;
-        ostringstream stream;
-
-        stream << left;
-
-        stream << setw(LEFT_COL) << "Name:" << endl;
-
-        for(int index = 0; index < combatList.Size(); index++)
-        {
-            stream << left;
-            stream <<  "* " << setw(LEFT_COL) << combatList[index].GetName();
-            stream << right;
-            stream << setw(10) << combatList[index].GetInitiative() << endl;
-        }
-
-        return stream.str();
-
     }
 
     // Sort list before combat in descending order of initiative
@@ -659,6 +680,7 @@ public:
         ostringstream stream;
         string killPrompt;
         bool invalidInput;
+        string tempName;
 
         while(inBattle)
         {
@@ -667,8 +689,13 @@ public:
             while(invalidInput)
             {
                 system("cls");
+                // Output
                 initiativeList = CreateInitiativeList();
                 PrintScroll(initiativeList);
+                tempName = UppercaseString(combatList[0].GetName());
+                cout << tempName << "'S TURN!" << endl;
+
+                // Input
                 invalidInput = ValidateCharInput(inputAr, inputArSize,
                                                  battleInput, OPTION_PROMPT);
                 if(invalidInput)
@@ -685,10 +712,12 @@ public:
                 case CONTINUE:  GetNextActor();
                             break;
                 case KILL:      system("cls");
+                                // Output
                                 numberedList = CreateNumberedList();
                                 PrintScroll(numberedList);
                                 stream << "Kill who? (1-" << combatList.Size() << ") ";
                                 killPrompt = stream.str();
+                                // Input
                                 ValidateIntInput(1, combatList.Size(), deadIndex, killPrompt);
                                 KillActor(deadIndex - 1);
                                 // Clear prompt string
@@ -699,28 +728,6 @@ public:
                             break;
             }
         }// END while(inBattle)
-    }
-
-    // Create numbered list of active combatants for user to choose who to 'kill'
-    string CreateNumberedList()
-    {
-        const int LEFT_COL = 20;
-        ostringstream stream;
-
-        stream << left;
-
-        stream << setw(LEFT_COL) << "Name:" << endl;
-
-        for(int index = 0; index < combatList.Size(); index++)
-        {
-            stream << left;
-            stream <<  "* [" << index + 1 << ']' << setw(LEFT_COL) << combatList[index].GetName();
-            stream << right;
-            stream << setw(10) << combatList[index].GetInitiative() << endl;
-        }
-
-        return stream.str();
-
     }
 
     // Allow user to remove an actor from combat
@@ -802,24 +809,24 @@ public:
 /* Battle Screen
  __________________________________
 /  \                               \.
-|   |                              |.
-|   |  Name                  Init. |.
- \_ |  _____________________|______|.
-    |  Skeleton Warrior 10  | 15   |.
-    |  --------------------------- |.
-    |  Jahan                | 12   |.
-    |  --------------------------- |.
-    |  Vampire              | 10   |.
-    |  --------------------------- |.
-    |                              |.
-    |                              |.
-    |                              |.
-    |                              |.
-    |                              |.
-    |                              |.
-    |   ___________________________|___
+|   |                               |.
+|   |  Name                  Init.  |.
+ \_ |                               |.
+    | 1 Skeleton Warrior 10  | 15   |.
+    | ----------------------------- |.
+    | 2 Jahan                | 12   |.
+    | ----------------------------- |.
+    | 3 Vampire              | 10   |.
+    | ----------------------------- |.
+    |                               |.
+    |                               |.
+    |                               |.
+    |                               |.
+    |                               |.
+    |                               |.
+    |   ____________________________|___
     |  /                               /.
-    \_/______________________________ /.
+    \_/_______________________________/.
 */
 };
 

@@ -50,7 +50,7 @@ public:
     Actor()
     {
         _name = "";
-        _initiative = -999;
+        _initiative = 0;
     }
         // Full
     Actor(string &name, int &initiative)
