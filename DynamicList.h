@@ -193,7 +193,6 @@ public:
     // Overload [] Operator
     T& operator[](int index)
     {
-        assert(0 <= index && index < _size);
         return _list[index];
     }
 

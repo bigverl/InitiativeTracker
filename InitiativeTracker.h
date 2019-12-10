@@ -140,8 +140,9 @@ public:
     }
 
     // Output template used for conducting combat
-    void PrintScroll(const string &menuBody)
+    string CreateScroll(const string &menuBody)
     {
+        ostringstream stream;
        /*
         __________________________________
        /  \                               \.
@@ -155,7 +156,7 @@ public:
 
         */
 
-        cout << " __________________________________" << endl
+        stream << " __________________________________" << endl
              << " /  \\                               \\." << endl
              << " |   |                               |." << endl
              << " |   |   Name                  Init. |." << endl
@@ -164,6 +165,8 @@ public:
              << "     |   ____________________________|___" << endl
              << "     |  /                               /." << endl
              << "     \\_/_______________________________/." << endl << endl;
+
+        return stream.str();
 
     }
 
@@ -457,6 +460,7 @@ public:
 
         while (invalid)
         {
+            system("cls");
             // Print Prompt
             cout << prompt;
 
@@ -505,6 +509,7 @@ public:
         ostringstream intInputStream;
         ostringstream scrollStream;
         string scrollPrompt;
+        string scroll;
         string intInputprompt;
         Actor temp;
         string list;
@@ -519,8 +524,10 @@ public:
 
                 // Assign un-numbered list
                 list = CreateInitiativeList();
+                // Prep Scroll
+                scroll = CreateScroll(list);
                 // Print Scroll
-                PrintScroll(list);
+                cout << scroll;
                 // User enters actor type
                 cout << "Enter name of creature (input x to exit): ";
                 getline(cin, name);
@@ -545,7 +552,7 @@ public:
                 while(invalidInput)
                 {
                     // Store prompt
-                    intInputStream << "Enter number of " << name << "s" << " to add: ";
+                    intInputStream << scroll << "Enter number of " << name << "s" << " to add: ";
                     intInputprompt = intInputStream.str();
                     // Get valid user input
                     invalidInput = ValidateIntInput(0, 30, actorCount, intInputprompt);
@@ -613,18 +620,26 @@ public:
         bool invalidInput = true;
         ostringstream stream;
         string prompt;
+        string initiativeList;
+        string scroll;
 
+        initiativeList = CreateInitiativeList();
         // User inputs initiative for all actors
         for(int index = 0; index < combatList.Size(); index++)
         {
             invalidInput = true;
 
+
             while(invalidInput)
             {
                 system("cls");
+
+                // Create and Print Scroll
+                initiativeList = CreateInitiativeList();
+                scroll = CreateScroll(initiativeList);
                 // Load correct prompt into stream
-                stream << "Input initiative for " << combatList[index].GetName()
-                     << ": ";
+                stream << scroll <<  "Input initiative for "
+                       << combatList[index].GetName() << ": ";
                 prompt = stream.str();
 
                 // Validate Input
@@ -681,6 +696,7 @@ public:
         string killPrompt;
         bool invalidInput;
         string tempName;
+        string scroll;
 
         while(inBattle)
         {
@@ -691,7 +707,8 @@ public:
                 system("cls");
                 // Output
                 initiativeList = CreateInitiativeList();
-                PrintScroll(initiativeList);
+                scroll = CreateScroll(initiativeList);
+                cout << scroll;
                 tempName = UppercaseString(combatList[0].GetName());
                 cout << tempName << "'S TURN!" << endl;
 
@@ -714,8 +731,9 @@ public:
                 case KILL:      system("cls");
                                 // Output
                                 numberedList = CreateNumberedList();
-                                PrintScroll(numberedList);
-                                stream << "Kill who? (1-" << combatList.Size() << ") ";
+                                scroll = CreateScroll(numberedList);
+                                stream << scroll << "Kill who? (1-"
+                                       << combatList.Size() << ") ";
                                 killPrompt = stream.str();
                                 // Input
                                 ValidateIntInput(1, combatList.Size(), deadIndex, killPrompt);
