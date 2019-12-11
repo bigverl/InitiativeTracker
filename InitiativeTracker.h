@@ -109,7 +109,7 @@ public:
           |                                 |
           |    C. Create Combat Encounter   |
           |    G. Fight!                    |
-          |    P. Reset Combat              |
+          |    R. Reset Combat              |
           |    Q. Quit                      |
 
          */
@@ -122,7 +122,7 @@ public:
                << "|" << setfill(' ') << setw(MENU_LINE_SIZE - 1) << '|' << endl
                << "|   <C> Create Combat Encounter   |" << endl
                << "|   <G> Fight!                    |" << endl
-               << "|   <P> Reset Combat              |" << endl
+               << "|   <R> Reset Combat              |" << endl
                << "|   <Q> Quit                      |";
 
         menuPrompt = stream.str();
@@ -227,15 +227,15 @@ public:
 
                 */
 
-        stream << " __________________________________"       << endl
-             << " /  \\                               \\."    << endl
-             << " |   |                               |."     << endl
-             << " |   |   Name                  Init. |."     << endl
-             << "  \\_ |                               |."    << endl
+        stream << " ___________________________________"       << endl
+             << " /  \\                                \\."    << endl
+             << " |   |                                |."     << endl
+             << " |   |   Name                   Init. |."     << endl
+             << "  \\_ |                                |."    << endl
                                   << menuBody
-             << "     |   ____________________________|___"   << endl
-             << "     |  /                               /."  << endl
-             << "     \\_/_______________________________/."  << endl << endl;
+             << "     |   _____________________________|___"   << endl
+             << "     |  /                                /."  << endl
+             << "     \\_/________________________________/."  << endl << endl;
 
         return stream.str();
 
@@ -273,7 +273,7 @@ public:
         {
             // Name
             stream << left;
-            stream << "     |   " << setw(NAME_COL) << setfill(' ')
+            stream << "     |    " << setw(NAME_COL) << setfill(' ')
                    << combatList[index].GetName();
             stream << "  | ";
             // Init
@@ -281,7 +281,7 @@ public:
             stream << setw(3) << combatList[index].GetInitiative() << " |."
                    << endl;
             // Dashes
-            stream << "     |   "
+            stream << "     |    "
                    << setw(DASH_FILLER)<< setfill('-')
                    << " |." << endl;
         }
@@ -316,15 +316,16 @@ public:
          */
 
         const int NAME_COL = 20;
-        const int DASH_FILLER = 30;
+        const int DASH_FILLER = 31;
         ostringstream stream;
 
         for(int index = 0; index < combatList.Size(); index++)
         {
             // Name
             stream << left;
-            stream << "     | " << index +1 << " " << setw(NAME_COL)
-                   << setfill(' ') << combatList[index].GetName();
+            stream << "     | " << setfill(' ') << right << setw(2) << index +1 << " "
+                   << left << setw(NAME_COL)
+                   << combatList[index].GetName();
             stream << "  | ";
             // Initiative
             stream << right;
@@ -332,7 +333,7 @@ public:
                    << endl;
             // Line of Dashes
             stream << "     |   "  << setw(DASH_FILLER)<< setfill('-')
-                   << " |." << endl;
+                   << "  |." << endl;
 
         }
         return stream.str();
@@ -383,10 +384,15 @@ public:
      *************************************************************************/
     void MainMenu()
     {
-        enum MainMenuOptions{ CREATE_ENCOUNTER = 'C', FIGHT = 'G', RESET = 'P',
-                              QUIT = 'Q' };
+        enum MainMenuOptions
+        {
+            CREATE_ENCOUNTER = 'C',
+            FIGHT = 'G', RESET = 'R',
+            QUIT = 'Q'
+        };
+
         const int inputArSize = 4;
-        char inputAr [inputArSize] = {'C', 'G', 'P', 'Q'};
+        char inputAr [inputArSize] = {'C', 'G', 'R', 'Q'};
         string mainMenuOutput;
         bool invalidInput = true;
         bool inMainMenu = true;
@@ -982,6 +988,7 @@ public:
 
             while(invalidInput)
             {
+                // Clear
                 system("cls");
 
                 // Output
@@ -990,7 +997,6 @@ public:
                 stream << scroll <<  "Input initiative for "
                        << combatList[index].GetName() << ": ";
                 prompt = stream.str();
-
                 // Input
                 invalidInput = ValidateIntInput(0, 30, initiative, prompt);
 
