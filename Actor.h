@@ -3,13 +3,6 @@
  * ----------------------------------------------------------------------------
  * Purpose: This is the object that each player character, monster, and ally
  *          exists as. It has a name and an initiative.
- *
- *
- * ----------------------------------------------------------------------------
- * Exists within: DynamicList
- *
- *
- *
  ******************************************************************************/
 
 #ifndef ACTOR_H
@@ -25,17 +18,56 @@ private:
     int _initiative;
 
 public:
-    // Setters
+    /**************************************************************************
+     * FUNCTION: SetName
+     * ------------------------------------------------------------------------
+     * Purpose : This function allows _name to be set outside of this class
+     * ------------------------------------------------------------------------
+     * Receives:
+     *     name  : const string
+     * Returns:
+     *     nothing
+     *************************************************************************/
     void SetName (const string &name) { _name = name; }
+
+    /**************************************************************************
+     * FUNCTION: SetInitiative
+     * ------------------------------------------------------------------------
+     * Purpose : This function allows _initiative to be set outside of this
+     *           class
+     * ------------------------------------------------------------------------
+     * Receives:
+     *     initiative : const int
+     * Returns:
+     *     nothing
+     *************************************************************************/
     void SetInitiative(const int &initiative) { _initiative = initiative; }
-    // Getters
+
+    /**************************************************************************
+     * FUNCTION: GetName
+     * ------------------------------------------------------------------------
+     * Purpose : This function allows _name to be accessed outside of this
+     *           class
+     * ------------------------------------------------------------------------
+     * Receives:
+     *     nothing
+     * Returns:
+     *     name : string
+     *************************************************************************/
     string GetName() const { return _name; }
     int GetInitiative() const { return _initiative; }
 
-    // Public Methods
-    void print();
-
-    // Overloaded Operators
+    /**************************************************************************
+     * FUNCTION: operator==
+     * ------------------------------------------------------------------------
+     * Purpose : This function overloads == operator to allow comparison of
+     *           specific datamembers
+     * ------------------------------------------------------------------------
+     * Receives:
+     *     other : const Actor
+     * Returns:
+     *     same  : bool
+     *************************************************************************/
     bool operator==(const Actor &other) const
     {
         bool same = false;

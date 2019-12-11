@@ -1,14 +1,12 @@
 /******************************************************************************
  *  Class: DynamicList
  * ----------------------------------------------------------------------------
- * Purpose: This
+ * Purpose: This container is a dynamic array that contains functionality
+ *          similar to STL vectors. It will resize itself upward if it becomes
+ *          full, and is templated to be able to hold any type of datatype,
+ *          including user-defined types.
  *
- *
- * ----------------------------------------------------------------------------
- * Exists within: InitiativeTracker, DatabaseManager
- *
- *
- *
+ *          Big thanks to Ozyx for helping me develop this tool!
  ******************************************************************************/
 
 #ifndef DYNAMICLIST_H
@@ -22,9 +20,9 @@ template <class T>
 class DynamicList
 {
 private:
-    T* _list;
-    int _size;
-    int _capacity;
+    T* _list;       // Pointer to list
+    int _size;      // Current size of list
+    int _capacity;  // Maximum size of list
 
 public:
 
@@ -110,7 +108,6 @@ public:
             {
                 // Create new list
                 T* newList = new T[2 * _capacity];
-
                 // Copy old list into it
                 for(int index = 0; index < _size; index++)
                 {
@@ -119,10 +116,8 @@ public:
 
                 // Double capacity
                 _capacity = _capacity *2;
-
                 // Delete old list
                 delete[] _list;
-
                 // Assign old to new
                 _list = newList;
             }
