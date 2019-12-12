@@ -146,7 +146,7 @@ public:
 
         /*|     Create Combat Encounter     |
           |                                 |
-          |    A. Add Party to Combat       |
+          |    A. Load Party from File      |
           |    B. Add Ally/Enemy to Combat  |
           |    Q. Back                      |
 
@@ -157,7 +157,7 @@ public:
 
         stream << '|' << setw(25) << "Create Combat Menu" << "        |" << endl
                << '|' << setfill(' ') << setw(MENU_LINE_SIZE - 1) << '|' << endl
-               << "|   <C> Add Party to Combat       |"                  << endl
+               << "|   <C> Load Party from File      |"                  << endl
                << "|   <A> Add Ally/Enemy to Combat  |"                  << endl
                << "|   <Q> Back to Main Menu         |";
 
@@ -508,14 +508,19 @@ public:
                 case ADD_PARTY: if(!partyAdded)
                                 {
                                     AddPartyFromFile();
-                                    cout << "Party Added!" << endl;
-                                    partyAdded = true;
+                                    if(combatList.Size() > 0)
+                                    {
+                                        cout << "Party Added!" << endl;
+                                        partyAdded = true;
+                                        system("pause");
+                                    }
                                 }
                                 else
                                 {
                                     cout << "Party already added from file." << endl;
+                                    system("pause");
                                 }
-                                system("pause");
+
                         break;
                 case ADD_ACTOR: AddActors();
                         break;
@@ -670,7 +675,8 @@ public:
         }
         else
         {
-            cout << "Database file not found. Ensure text file is in same directory as .exe";
+            cout << "Database file not found. Ensure text file is in same directory as .exe"
+                 << endl;
             system("pause");
         }
 
@@ -1156,7 +1162,7 @@ public:
         |              \VV/               |
         |     Create Combat Encounter     |
         |                                 |
-        |    A. Add Party to Combat       |
+        |    A. Load Party from File      |
         |    B. Add Ally/Enemy to Combat  |
         |    Q. Back                      |
         |_________________________________|
