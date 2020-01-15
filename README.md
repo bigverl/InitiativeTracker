@@ -12,7 +12,7 @@ This program uses various c++ libraries that must be present in order to run it 
 ## Installation
 If your machine already has the libraries listed in 'dependencies' installed, just compile the .cpp via cmd prompt or IDE and you'll be all set. If the machine in question does not already have these libraries, just copy/paste them into the local folder and it will run fine.
 
-You will need to alter _partydb.txt_ to reflect your current gaming group. Follow the example listed in __partydb.txt__ by entering a name (first letter capitalization) followed by a return. The program reads in the names for default partymembers by line so don't include anything on each line except for the character's name.
+You will need to alter __partydb.txt__ to reflect your current gaming group. Follow the example listed in __partydb.txt__ by entering a name (first letter capitalization) followed by a return. The program reads in the names for default partymembers by line so don't include anything on each line except for the character's name.
 
 __e.g.__
 
@@ -29,7 +29,7 @@ Johnny, Sally, James, Jack
 This program does not roll initiative for the players. Instead, it relies on the user to prompt the players for their initiative scores. It was intentially designed in this way because players enjoy rolling their own dice.
 
 ### Standard Use Case
-1. Select __Create Combat Encounter__ default party (optional)
+1. Select __Create Combat Encounter__
 2. Select __Load Party From File__ (optional)
 3. Select __Add Ally/Enemy to Combat__
 4. Enter name of ally/enemy type __e.g.__ skeleton archer
