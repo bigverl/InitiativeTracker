@@ -12,16 +12,16 @@ This program uses various c++ libraries that must be present in order to run it 
 ## Installation
 If your machine already has the libraries listed in 'dependencies' installed, just compile the .cpp via cmd prompt or IDE and you'll be all set. If the machine in question does not already have these libraries, just copy/paste them into the local folder and it will run fine.
 
-You will need to alter _partydb.txt_ to reflect your current gaming group. Follow the example listed in _partydb.txt_ by entering a name (first letter capitalization) followed by a return. The program reads in the names for default partymembers by line so don't include anything on each line except for the character's name.
+You will need to alter _partydb.txt_ to reflect your current gaming group. Follow the example listed in __partydb.txt__ by entering a name (first letter capitalization) followed by a return. The program reads in the names for default partymembers by line so don't include anything on each line except for the character's name.
 
-_e.g._
+__e.g.__
 
 Johnny
 Sally
 James
 Jack
 
-_not_
+__not__
 
 Johnny, Sally, James, Jack
 
@@ -29,14 +29,14 @@ Johnny, Sally, James, Jack
 This program does not roll initiative for the players. Instead, it relies on the user to prompt the players for their initiative scores. It was intentially designed in this way because players enjoy rolling their own dice.
 
 ### Standard Use Case
-1. Select _Create Combat Encounter_ default party (optional)
-2. Select _Load Party From File_ (optional)
-3. Select _Add Ally/Enemy to Combat_
-4. Enter name of ally/enemy type _e.g._ skeleton archer
+1. Select __Create Combat Encounter__ default party (optional)
+2. Select __Load Party From File__ (optional)
+3. Select __Add Ally/Enemy to Combat__
+4. Enter name of ally/enemy type __e.g.__ skeleton archer
 5. Enter number of allies/enemies in that group
 *(repeat steps 4 and 5 until all actors are added)
-6. Select _Back to Main Menu_
-7. Select _Fight_
+6. Select __Back to Main Menu__
+7. Select __Fight__
 8. Prompt each player for their initiative roll as the program requests it
 9. Enter remaining actor initiative scores
 
