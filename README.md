@@ -16,10 +16,10 @@ You will need to alter __partydb.txt__ to reflect your current gaming group. Fol
 
 __e.g.__
 
-Johnny
-Sally
-James
-Jack
+Johnny  
+Sally  
+James  
+Jack  
 
 __not__
 
